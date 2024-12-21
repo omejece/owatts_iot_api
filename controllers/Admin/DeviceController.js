@@ -974,10 +974,8 @@ module.exports = {
 
 
      read: (req,res,next)=>{
-     	let myReq;
-        myReq = req.query;
-
-        let options = null;
+     	let myReq = req.query;
+        let options;
 
         if(myReq.merchant_id){
             options = {
