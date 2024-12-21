@@ -93,8 +93,6 @@ module.exports = {
          if (typeof bearerHeader !== "undefined") {
             const bearerToken = bearerHeader.split(" ")[1];
             req.token = bearerToken;
-            
-            
             jwt.verify(req.token, process.env.TOKEN_KEY, (err, authData) => {
                 
               if(err){
