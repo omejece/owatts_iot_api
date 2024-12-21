@@ -1,0 +1,34 @@
+{
+  "name": "one_watt_solar_server_v1.0",
+  "version": "1.0.0",
+  "description": "One watt solar server version 1",
+  "main": "app.js",
+  "scripts": {
+    "test": "\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C"
+  },
+  "author": "Christian Ejike Omeje",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-formidable": "^1.2.0",
+    "forever": "^0.10.10",
+    "morgan": "^1.10.0",
+    "net": "^1.0.2",
+    "nodemailer": "^6.4.18",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1",
+    "uniqid": "^5.3.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.17.0",
+    "sequelize-cli": "^6.2.0"
+  }
+}
