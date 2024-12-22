@@ -21,99 +21,21 @@ module.exports =  {
         let myReq;
         myReq = req.body;
         
-        Auth.valicateMerchantId(myReq.merchant_id).then(myMerchant=>{
-            Block.create({
-              merchant_id: myMerchant.id,
-              name: myReq.name,
-              reference: uuid.v4(),
-              address: myReq.address,
-              capacity: myReq.capacity,
-              latitude: myReq.latitude,
-              longitude: myReq.longitude
-            }).then(block=>{
-               res.setHeader('Content-type','application/json');
-               res.status(200).send(JSON.stringify({
-                   success:true,
-                   message:"Block successfully added",
-                   data:block
-               }));
-            }).catch(err=>{
-               console.log(err);
-               res.setHeader('Content-type','application/json');
-               res.status(400).send(JSON.stringify({
-                   success:false,
-                   message:err,
-                   data:[]
-               }));
-            });
-        }).catch(err=>{
-           console.log(err);
-           res.setHeader('Content-type','application/json');
-           res.status(400).send(JSON.stringify({
-               success:false,
-               message:err,
-               data:[]
-           }));
-        });
-     },
-
-
-
-     update: (req,res,next)=>{
-          let myReq;
-          myReq = req.body;
-
-          Auth.valicateMerchantId(myReq.merchant_id).then(myMerchant=>{
-              Block.findOne({
-                 where:{
-                   reference: myReq.reference,
-                   merchant_id: myMerchant.id
-                 }
-               }).then(myBlock=>{
-                  if(myBlock){
-                      Block.update(
-                       {
-                        capacity: myReq.capacity,
-                       },
-                       {
-                        where:{
-                          reference: myReq.reference
-                        }
-                       }
-                      ).then(block=>{
-                         res.setHeader('Content-type','application/json');
-                         res.status(200).send(JSON.stringify({
-                             success:true,
-                             message:"Block successfully updated",
-                             data:[]
-                         }));
-                      }).catch(err=>{
-                         console.log(err);
-                         res.setHeader('Content-type','application/json');
-                         res.status(400).send(JSON.stringify({
-                             success:false,
-                             message:err,
-                             data:[]
-                         }));
-                      });
-                  }
-                  else{
-                     res.setHeader('Content-type','application/json');
-                     res.status(400).send(JSON.stringify({
-                         success:false,
-                         message:"Invalid block",
-                         data:[]
-                     }));
-                  }
-               }).catch(err=>{
-                   console.log(err);
-                   res.setHeader('Content-type','application/json');
-                   res.status(400).send(JSON.stringify({
-                       success:false,
-                       message:err,
-                       data:[]
-                   }));
-               });
+        Block.create({
+            merchant_id: myMerchant.id,
+            name: myReq.name,
+            reference: uuid.v4(),
+            address: myReq.address,
+            capacity: myReq.capacity,
+            latitude: myReq.latitude,
+            longitude: myReq.longitude
+          }).then(block=>{
+             res.setHeader('Content-type','application/json');
+             res.status(200).send(JSON.stringify({
+                 success:true,
+                 message:"Block successfully added",
+                 data:block
+             }));
           }).catch(err=>{
              console.log(err);
              res.setHeader('Content-type','application/json');
@@ -122,6 +44,64 @@ module.exports =  {
                  message:err,
                  data:[]
              }));
+          });
+     },
+
+
+
+     update: (req,res,next)=>{
+          let myReq;
+          myReq = req.body;
+
+          Block.findOne({
+            where:{
+              reference: myReq.reference,
+              merchant_id: myMerchant.id
+            }
+          }).then(myBlock=>{
+             if(myBlock){
+                 Block.update(
+                  {
+                   capacity: myReq.capacity,
+                  },
+                  {
+                   where:{
+                     reference: myReq.reference
+                   }
+                  }
+                 ).then(block=>{
+                    res.setHeader('Content-type','application/json');
+                    res.status(200).send(JSON.stringify({
+                        success:true,
+                        message:"Block successfully updated",
+                        data:[]
+                    }));
+                 }).catch(err=>{
+                    console.log(err);
+                    res.setHeader('Content-type','application/json');
+                    res.status(400).send(JSON.stringify({
+                        success:false,
+                        message:err,
+                        data:[]
+                    }));
+                 });
+             }
+             else{
+                res.setHeader('Content-type','application/json');
+                res.status(400).send(JSON.stringify({
+                    success:false,
+                    message:"Invalid block",
+                    data:[]
+                }));
+             }
+          }).catch(err=>{
+              console.log(err);
+              res.setHeader('Content-type','application/json');
+              res.status(400).send(JSON.stringify({
+                  success:false,
+                  message:err,
+                  data:[]
+              }));
           });
       
      },
@@ -227,7 +207,7 @@ module.exports =  {
      read: (req,res,next)=>{
            let myReq;
            myReq = req.query;
-           let options = null;
+           let options;
            if(myReq.merchant_id){
               options = {
                     where:{
