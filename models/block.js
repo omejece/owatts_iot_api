@@ -14,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   block.init({
+      name: DataTypes.STRING,
+      address: DataTypes.STRING,
       reference: DataTypes.STRING,
       merchant_id: DataTypes.INTEGER,
       data: {
