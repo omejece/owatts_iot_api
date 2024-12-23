@@ -30,6 +30,7 @@ module.exports =  {
             latitude: myReq.latitude,
             longitude: myReq.longitude
           }).then(block=>{
+             console.log(block);
              res.setHeader('Content-type','application/json');
              res.status(200).json({
                  success:true,
