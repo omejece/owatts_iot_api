@@ -28,7 +28,8 @@ module.exports =  {
             address: myReq.address,
             capacity: myReq.capacity,
             latitude: myReq.latitude,
-            longitude: myReq.longitude
+            longitude: myReq.longitude,
+            data: {}
           }).then(block=>{
              console.log(block);
              res.setHeader('Content-type','application/json');
