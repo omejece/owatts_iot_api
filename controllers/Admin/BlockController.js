@@ -31,11 +31,11 @@ module.exports =  {
             longitude: myReq.longitude
           }).then(block=>{
              res.setHeader('Content-type','application/json');
-             res.status(200).send(JSON.stringify({
+             res.status(200).json({
                  success:true,
                  message:"Block successfully added",
                  data:block
-             }));
+             });
           }).catch(err=>{
              console.log(err);
              res.setHeader('Content-type','application/json');
