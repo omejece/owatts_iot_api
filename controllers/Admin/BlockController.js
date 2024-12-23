@@ -22,7 +22,7 @@ module.exports =  {
         myReq = req.body;
         
         Block.create({
-            merchant_id: myMerchant.id,
+            merchant_id: myReq.merchant,
             name: myReq.name,
             reference: uuid.v4(),
             address: myReq.address,
@@ -56,7 +56,7 @@ module.exports =  {
           Block.findOne({
             where:{
               reference: myReq.reference,
-              merchant_id: myMerchant.id
+              merchant_id: myReq.merchant
             }
           }).then(myBlock=>{
              if(myBlock){
@@ -246,7 +246,7 @@ module.exports =  {
               reference: {
                [Op.like]: '%'+myReq.reference+'%'
               },
-              merchant_id: myMerchant.id
+              merchant_id: myReq.merchant
             }
           }).then(myBlock=>{
               res.setHeader('Content-type','application/json');

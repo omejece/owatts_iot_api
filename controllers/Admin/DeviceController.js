@@ -86,7 +86,7 @@ module.exports = {
                                     imei: myReq.imei,
                                     device_type: devList.device_type,
                                     device_link_imei: myReq.device_link_imei,
-                                    merchant_id: myMerchant.id,
+                                    merchant_id: myReq.merchant,
                                     data: data,
                                     flags: {"is_control":"0","is_disabled": "0","is_setting": "0"},
                                     settings: settings,
@@ -159,7 +159,7 @@ module.exports = {
                                     imei: myReq.imei,
                                     device_type: devList.device_type,
                                     device_link_imei: myReq.device_link_imei,
-                                    merchant_id: myMerchant.id,
+                                    merchant_id: myReq.merchant,
                                     data: data,
                                     flags: {"is_control":"0","is_disabled": "0","is_setting": "0"},
                                     settings: {},
@@ -221,7 +221,7 @@ module.exports = {
                                     imei: myReq.imei,
                                     device_type: devList.device_type,
                                     device_link_imei: myReq.device_link_imei,
-                                    merchant_id: myMerchant.id,
+                                    merchant_id: myReq.merchant,
                                     data: data,
                                     flags: {"is_control":"0","is_disabled": "0","is_setting": "0"},
                                     settings: {}
@@ -274,7 +274,7 @@ module.exports = {
                                     imei: myReq.imei,
                                     device_type: devList.device_type,
                                     device_link_imei: myReq.device_link_imei,
-                                    merchant_id: myMerchant.id,
+                                    merchant_id: myReq.merchant,
                                     data: data,
                                     flags: {"is_control":"0","is_disabled": "0","is_setting": "0"},
                                     settings: {},
@@ -326,7 +326,7 @@ module.exports = {
                                     imei: myReq.imei,
                                     device_type: devList.device_type,
                                     device_link_imei: myReq.device_link_imei,
-                                    merchant_id: myMerchant.id,
+                                    merchant_id: myReq.merchant,
                                     data: data,
                                     flags: {"is_control":"0","is_disabled": "0","is_setting": "0"},
                                     settings: {},
@@ -378,7 +378,7 @@ module.exports = {
                                     imei: myReq.imei,
                                     device_type: devList.device_type,
                                     device_link_imei: myReq.device_link_imei,
-                                    merchant_id: myMerchant.id,
+                                    merchant_id: myReq.merchant,
                                     data: data,
                                     flags: {"is_control":"0","is_disabled": "0","is_setting": "0"},
                                     settings: {},
@@ -483,7 +483,7 @@ module.exports = {
                                     imei: myReq.imei,
                                     device_type: devList.device_type,
                                     device_link_imei: myReq.device_link_imei,
-                                    merchant_id: myMerchant.id,
+                                    merchant_id: myReq.merchant,
                                     data: data,
                                     flags: {"is_control":"0","is_disabled": "0","is_setting": "0"},
                                     settings: {},
@@ -626,7 +626,7 @@ module.exports = {
                                       {
                                         where:{
                                            imei: myReq.imei,
-                                           merchant_id: myMerchant.id
+                                           merchant_id: myReq.merchant
                                         }
                                       }
                                     ).then(myDevice=>{
@@ -666,7 +666,7 @@ module.exports = {
                                       {
                                         where:{
                                            imei: myReq.imei,
-                                           merchant_id: myMerchant.id
+                                           merchant_id: myReq.merchant
                                         }
                                       }
                                     ).then(myDevice=>{
@@ -697,7 +697,7 @@ module.exports = {
                                       {
                                         where:{
                                            imei: myReq.imei,
-                                           merchant_id: myMerchant.id
+                                           merchant_id: myReq.merchant
                                         }
                                       }
                                     ).then(myDevice=>{
@@ -728,7 +728,7 @@ module.exports = {
                                       {
                                         where:{
                                            imei: myReq.imei,
-                                           merchant_id: myMerchant.id
+                                           merchant_id: myReq.merchant
                                         }
                                       }
                                     ).then(myDevice=>{
@@ -769,7 +769,7 @@ module.exports = {
                                       {
                                         where:{
                                            imei: myReq.imei,
-                                           merchant_id: myMerchant.id
+                                           merchant_id: myReq.merchant
                                         }
                                       }
                                     ).then(myDevice=>{
@@ -807,7 +807,7 @@ module.exports = {
                                       {
                                         where:{
                                            imei: myReq.imei,
-                                           merchant_id: myMerchant.id
+                                           merchant_id: myReq.merchant
                                         }
                                       }
                                     ).then(myDevice=>{
@@ -844,7 +844,7 @@ module.exports = {
                                       {
                                         where:{
                                            imei: myReq.imei,
-                                           merchant_id: myMerchant.id
+                                           merchant_id: myReq.merchant
                                         }
                                       }
                                     ).then(myDevice=>{
