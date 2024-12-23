@@ -64,7 +64,13 @@ module.exports =  {
              if(myBlock){
                  Block.update(
                   {
-                   capacity: myReq.capacity,
+                    merchant_id: myReq.merchant,
+                    name: myReq.name,
+                    address: myReq.address,
+                    capacity: myReq.capacity,
+                    latitude: myReq.latitude,
+                    longitude: myReq.longitude,
+                    data: myBlock.data
                   },
                   {
                    where:{
