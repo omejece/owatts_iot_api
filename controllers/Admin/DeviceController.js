@@ -113,6 +113,7 @@ module.exports = {
                                              data:myDevice
                                          }));
                                      }).catch(err=>{
+                                        console.log(err);
                                          res.setHeader('Content-type','application/json');
                                          res.status(400).send(JSON.stringify({
                                              success:false,
@@ -122,6 +123,7 @@ module.exports = {
                                      })
                                         
                                 }).catch(err=>{
+                                    console.log(err);
                                      res.setHeader('Content-type','application/json');
                                      res.status(400).send(JSON.stringify({
                                          success:false,
@@ -504,6 +506,7 @@ module.exports = {
                                              data:{}
                                          }));
                                      }).catch(err=>{
+                                        console.log(err);
                                          res.setHeader('Content-type','application/json');
                                          res.status(400).send(JSON.stringify({
                                              success:false,
@@ -513,6 +516,7 @@ module.exports = {
                                      })
                                         
                                 }).catch(err=>{
+                                    console.log(err);
                                      res.setHeader('Content-type','application/json');
                                      res.status(400).send(JSON.stringify({
                                          success:false,
@@ -633,6 +637,7 @@ module.exports = {
                                              data:{}
                                          }));   
                                     }).catch(err=>{
+                                        console.log(err);
                                          res.setHeader('Content-type','application/json');
                                          res.status(400).send(JSON.stringify({
                                              success:false,
@@ -734,6 +739,7 @@ module.exports = {
                                              data:{}
                                          }));   
                                     }).catch(err=>{
+                                        console.log(err);
                                          res.setHeader('Content-type','application/json');
                                          res.status(400).send(JSON.stringify({
                                              success:false,
@@ -774,6 +780,7 @@ module.exports = {
                                              data:{}
                                          }));   
                                     }).catch(err=>{
+                                         console.log(err);
                                          res.setHeader('Content-type','application/json');
                                          res.status(400).send(JSON.stringify({
                                              success:false,
@@ -869,6 +876,7 @@ module.exports = {
                             }
 
                         }).catch(err=>{
+                            console.log(err);
                             res.setHeader('Content-type','application/json');
                             res.status(400).send(JSON.stringify({
                                 success:false,
