@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.STRING,
       reference: DataTypes.STRING,
       merchant_id: DataTypes.INTEGER,
+      capacity: DataTypes.DOUBLE,
+      longitude: DataTypes.DOUBLE,
+      latitude: DataTypes.DOUBLE,
       data: {
         type: DataTypes.STRING,
         get(value) {

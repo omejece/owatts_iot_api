@@ -22,14 +22,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       capacity: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE(10,2)
       },
       longitude: {
-        type: Sequelize.DOUBLE,
+        type: Sequelize.DOUBLE(20,10),
         allowNull:true
       },
       latitude: {
-        type: Sequelize.DOUBLE,
+        type: Sequelize.DOUBLE(20,10),
         allowNull:true
       },
       data: {
