@@ -273,7 +273,64 @@ module.exports =  {
               }));
           });
       
-     }
+     },
+
+
+     blockDevices: (req,res,next)=>{
+        let myReq;
+        myReq = req.query;
+
+        Block.findOne({
+          where:{
+            reference: myReq.reference
+          },
+          raw: true
+        }).then(myBlock=>{
+           if(myBlock){
+
+                Device.findAll({
+                    where:{
+                        block_id: myBlock.id
+                    }
+                }).then(myDevices=>{
+
+                    res.setHeader('Content-type','application/json');
+                    res.status(200).send(JSON.stringify({
+                        success:true,
+                        message:"successfull",
+                        data:myDevices
+                    }));
+
+                }).catch(err=>{
+                    console.log(err);
+                    res.setHeader('Content-type','application/json');
+                    res.status(400).send(JSON.stringify({
+                        success:false,
+                        message:err,
+                        data:[]
+                    }));
+                });
+
+           }
+           else{
+              res.setHeader('Content-type','application/json');
+              res.status(400).send(JSON.stringify({
+                  success:false,
+                  message:"Invalid block",
+                  data:[]
+              }));
+           }
+        }).catch(err=>{
+            console.log(err);
+            res.setHeader('Content-type','application/json');
+            res.status(400).send(JSON.stringify({
+                success:false,
+                message:err,
+                data:[]
+            }));
+        }); 
+            
+   },
  
 
 }

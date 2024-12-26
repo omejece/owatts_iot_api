@@ -58,6 +58,8 @@ router.delete('/block/delete',Auth.authenticate,BlockController.delete);
 router.get('/block/detail',Auth.authenticate,BlockController.detail);
 router.get('/block/read',Auth.authenticate,BlockController.read);
 router.get('/block/search',Auth.authenticate,BlockController.search);
+router.get('/block/devices',Auth.authenticate,BlockController.blockDevices);
+
 /* blocks */
 
 
