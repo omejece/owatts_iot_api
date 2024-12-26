@@ -181,13 +181,30 @@ module.exports =  {
             raw: true
           }).then(myBlock=>{
              if(myBlock){
-                  myBlock.data = JSON.parse(myBlock.data);
-                  res.setHeader('Content-type','application/json');
-                  res.status(200).send(JSON.stringify({
-                      success:true,
-                      message:"successfull",
-                      data:myBlock
-                  }));
+                  Merchant.findOne({
+                     where:{
+                        id: myBlock.merchant_id 
+                     }
+                  }).then(merchant=>{
+                        myBlock.data = JSON.parse(myBlock.data);
+                        myBlock.merchant = merchant;
+                        res.setHeader('Content-type','application/json');
+                        res.status(200).send(JSON.stringify({
+                            success:true,
+                            message:"successfull",
+                            data:myBlock
+                        }));
+                  }).catch(err=>{
+                    console.log(err);
+                    res.setHeader('Content-type','application/json');
+                    res.status(400).send(JSON.stringify({
+                        success:false,
+                        message:err,
+                        data:[]
+                    }));
+                  }); 
+
+
              }
              else{
                 res.setHeader('Content-type','application/json');
