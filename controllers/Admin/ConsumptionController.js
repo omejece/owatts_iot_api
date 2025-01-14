@@ -560,8 +560,7 @@ module.exports = {
                      date_taken:{
                         [Op.between]:[myReq.fromDate,myReq.toDate]
                      }
-                  },
-                  include:[{model:Device,required:false}]
+                  }
                }
             }
             else if(!myReq.imei && myReq.block_id){
@@ -571,8 +570,7 @@ module.exports = {
                      date_taken:{
                         [Op.between]:[myReq.fromDate,myReq.toDate]
                      }
-                  },
-                  include:[{model:Device,required:false}]
+                  }
                }
             }
             else if(myReq.imei && !myReq.block_id){
@@ -582,8 +580,7 @@ module.exports = {
                      date_taken:{
                         [Op.between]:[myReq.fromDate,myReq.toDate]
                      }
-                  },
-                  include:[{model:Device,required:false}]
+                  }
                }
             }
             else if(!myReq.imei && !myReq.block_id){
@@ -592,8 +589,7 @@ module.exports = {
                      date_taken:{
                         [Op.between]:[myReq.fromDate,myReq.toDate]
                      }
-                  },
-                  include:[{model:Device,required:false}]
+                  }
                }
             }
          
@@ -627,8 +623,7 @@ module.exports = {
                      imei:myReq.imei,
                      year_taken:myReq.year,
                      block_id:myReq.block_id
-                  },
-                  include:[{model:Device,required:false}]
+                  }
                }
             }
             else if(!myReq.imei && myReq.block_id){
@@ -636,8 +631,7 @@ module.exports = {
                   where: {
                      year_taken:myReq.year,
                      block_id:myReq.block_id
-                  },
-                  include:[{model:Device,required:false}]
+                  }
                }
             }
             else if(myReq.imei && !myReq.block_id){
@@ -645,16 +639,14 @@ module.exports = {
                   where: {
                      imei:myReq.imei,
                      year_taken:myReq.year
-                  },
-                  include:[{model:Device,required:false}]
+                  }
                }
             }
             else if(!myReq.imei && !myReq.block_id){
                options = {
                   where: {
                      year_taken:myReq.year
-                  },
-                  include:[{model:Device,required:false}]
+                  }
                }
             }
          
