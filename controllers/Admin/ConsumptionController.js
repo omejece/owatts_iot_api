@@ -549,8 +549,9 @@ module.exports = {
 
 
      getRangeConsumption: (req,res,next)=>{
+            let myReq;
+            myReq = req.query;
             let options;
-
             if(myReq.imei && myReq.block_id){
                options = {
                   where: {
@@ -616,6 +617,8 @@ module.exports = {
 
 
      getYearlyConsumption: (req,res,next)=>{
+            let myReq;
+            myReq = req.query;
             let options;
 
             if(myReq.imei && myReq.block_id){
