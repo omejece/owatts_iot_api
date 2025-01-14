@@ -546,6 +546,136 @@ module.exports = {
          });
         
      },
+
+
+     getRangeConsumption: (req,res,next)=>{
+            let options;
+
+            if(myReq.imei && myReq.block_id){
+               options = {
+                  where: {
+                     imei:myReq.imei,
+                     block_id:myReq.block_id,
+                     date_taken:{
+                        [Op.between]:[myReq.fromDate,myReq.toDate]
+                     }
+                  },
+                  include:[{model:Device,required:false}]
+               }
+            }
+            else if(!myReq.imei && myReq.block_id){
+               options = {
+                  where: {
+                     block_id:myReq.block_id,
+                     date_taken:{
+                        [Op.between]:[myReq.fromDate,myReq.toDate]
+                     }
+                  },
+                  include:[{model:Device,required:false}]
+               }
+            }
+            else if(myReq.imei && !myReq.block_id){
+               options = {
+                  where: {
+                     imei:myReq.imei,
+                     date_taken:{
+                        [Op.between]:[myReq.fromDate,myReq.toDate]
+                     }
+                  },
+                  include:[{model:Device,required:false}]
+               }
+            }
+            else if(!myReq.imei && !myReq.block_id){
+               options = {
+                  where: {
+                     date_taken:{
+                        [Op.between]:[myReq.fromDate,myReq.toDate]
+                     }
+                  },
+                  include:[{model:Device,required:false}]
+               }
+            }
+         
+            Consumption.findAll(options).then(myconsumptions=>{
+               res.setHeader('Content-type','application/json');
+               res.status(200).send(JSON.stringify({
+                  success:true,
+                  message:'Successfull',
+                  data:myconsumptions
+               }));
+            }).catch(err=>{
+               console.log(err);
+               res.setHeader('Content-type','application/json');
+               res.status(400).send(JSON.stringify({
+                  success:false,
+                  message:err,
+                  data:{}
+               })); 
+            });
+     },
+
+
+     getYearlyConsumption: (req,res,next)=>{
+            let options;
+
+            if(myReq.imei && myReq.block_id){
+               options = {
+                  where: {
+                     imei:myReq.imei,
+                     year_taken:myReq.year,
+                     block_id:myReq.block_id
+                  },
+                  include:[{model:Device,required:false}]
+               }
+            }
+            else if(!myReq.imei && myReq.block_id){
+               options = {
+                  where: {
+                     year_taken:myReq.year,
+                     block_id:myReq.block_id
+                  },
+                  include:[{model:Device,required:false}]
+               }
+            }
+            else if(myReq.imei && !myReq.block_id){
+               options = {
+                  where: {
+                     imei:myReq.imei,
+                     year_taken:myReq.year
+                  },
+                  include:[{model:Device,required:false}]
+               }
+            }
+            else if(!myReq.imei && !myReq.block_id){
+               options = {
+                  where: {
+                     year_taken:myReq.year
+                  },
+                  include:[{model:Device,required:false}]
+               }
+            }
+         
+            Consumption.findAll(options).then(myconsumptions=>{
+               res.setHeader('Content-type','application/json');
+               res.status(200).send(JSON.stringify({
+                  success:true,
+                  message:'Successfull',
+                  data:myconsumptions
+               }));
+            }).catch(err=>{
+               console.log(err);
+               res.setHeader('Content-type','application/json');
+               res.status(400).send(JSON.stringify({
+                  success:false,
+                  message:err,
+                  data:{}
+               })); 
+            });
+      },
+
+
+
+
      
 
 };

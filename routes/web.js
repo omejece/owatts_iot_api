@@ -10,6 +10,8 @@ var DeviceAlarmController = require('../controllers/Admin/DeviceAlarmController'
 var DeviceController = require('../controllers/Admin/DeviceController');
 var DeviceSettingController = require('../controllers/Admin/DeviceSettingController');
 var DeviceTypeController = require('../controllers/Admin/DeviceTypeController');
+var ConsumptionController = require('../controllers/Admin/ConsumptionController');
+var ByPassController = require("../controllers/Admin/ByPassController");
 
 var GenLogController = require('../controllers/User/GenLogController');
 
@@ -167,5 +169,14 @@ router.put('/cancelKikeCookingTime',DeviceController.cancelKikeCookingTime);
 router.put('/resetkike',DeviceController.resetKike);
 router.post('/resetkike',DeviceController.resetKike);
 /*end reset kike*/
+
+
+/* consumption api */
+router.get('/yearly_consumption',ConsumptionController.getYearlyConsumption);
+router.get('/range_consumption',ConsumptionController.getRangeConsumption);
+router.get('/bypass_suspect',ByPassController.getByPassed);
+router.get('/gen_logs',GenLogController.genStartTimes);
+/* End consumption api */
+
 
 module.exports = router;

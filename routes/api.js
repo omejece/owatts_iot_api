@@ -14,6 +14,7 @@ var InverterLogController = require('../controllers/User/InverterLogController')
 
 
 
+
 /* device types */
 router.get('/device_type/detail',DeviceTypeController.detail);
 router.get('/device_type/read',DeviceTypeController.read);
@@ -132,6 +133,9 @@ router.put('/onn_all_splitter_point',DeviceController.onnAllSplitterTerminal);
   router.put('/setKikeCookingTime',DeviceController.setKikeCookingTime);
   router.put('/cancelKikeCookingTime',DeviceController.cancelKikeCookingTime);
 /* Kike cooking time */
+
+
+
 
 
 
