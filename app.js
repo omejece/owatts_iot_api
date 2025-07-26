@@ -9,6 +9,8 @@ var bcrypt = require('bcrypt-nodejs');
 var uniqid = require('uniqid');
 var cors = require('cors');
 
+const blockedIPs = ['174.138.183.72'];
+
  app.use(cors());
  
 
@@ -32,6 +34,19 @@ var logger = require('morgan');
 var ApiRoute = require('./routes/api');
 var WebRoute = require('./routes/web');
 
+
+
+
+app.use((req, res, next) => {
+  const clientIP = req.ip || req.connection.remoteAddress;
+
+  if (blockedIPs.includes(clientIP)) {
+    console.log(`Blocked request from IP: ${clientIP}`);
+    return res.status(403).send('Access denied.');
+  }
+
+  next(); // Continue processing for other IPs
+});
 
 app.use(logger('dev'));
 

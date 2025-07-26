@@ -25,6 +25,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
+      errorCorrectionFactor: {
+        type: Sequelize.DOUBLE(10,4)
+      },
       data: {
         type: Sequelize.STRING(1000),
         allowNull: true

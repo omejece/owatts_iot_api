@@ -10,6 +10,7 @@ var DeviceListController = require('../controllers/Admin/DeviceListController');
 var DeviceSettingController = require('../controllers/User/DeviceSettingController');
 var DeviceTypeController = require('../controllers/User/DeviceTypeController');
 var GenLogController = require('../controllers/User/GenLogController');
+var CookingLogController = require('../controllers/User/CookingLogController');
 var InverterLogController = require('../controllers/User/InverterLogController');
 
 
@@ -98,6 +99,12 @@ router.get('/generator_logs',DeviceController.generatorLogs);
   router.get('/gen_start_times',GenLogController.genStartTimes);
 
 /* end generator start times */
+
+
+/* cooking logs */
+router.get('/get_cooking_logs',CookingLogController.getCookingLogs);
+
+/* end cooking logs  */
 
 
 

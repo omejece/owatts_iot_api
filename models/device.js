@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     imei: DataTypes.STRING,
     device_type: DataTypes.INTEGER,
     device_link_imei: DataTypes.STRING,
+    errorCorrectionFactor: DataTypes.DOUBLE,
    // output: : DataTypes.INTEGER,
     //state: : DataTypes.INTEGER,
     data: {
