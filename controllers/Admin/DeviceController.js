@@ -1593,6 +1593,18 @@ module.exports = {
      },
      
      disableDevice: (req,res,next)=>{
+        /* console.log("*****owatts request to off meter Admin*******");
+         console.log("*****Ip Log Admin*******");
+         console.log(req);
+         const clientIP = req.ip || req.connection.remoteAddress;
+         console.log(clientIP);
+          res.setHeader('Content-type','application/json');
+                     res.status(401).send({
+                      success:false,
+                      message:'Not authorized',
+                      data:[]
+                     });
+                     return 0;*/
          let myReq;
          myReq = req.body;
          if(myReq.imei.startsWith("250")){

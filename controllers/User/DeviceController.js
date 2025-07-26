@@ -1801,6 +1801,18 @@ module.exports = {
      
      
      disableDevice: (req,res,next)=>{
+         /*console.log("*****owatts request to off meter User*******");
+         console.log("*****Ip Log User*******");
+         console.log(req);
+         const clientIP = req.ip || req.connection.remoteAddress;
+         console.log(clientIP);
+         res.setHeader('Content-type','application/json');
+                     res.status(401).send({
+                      success:false,
+                      message:'Not authorized',
+                      data:[]
+                     });
+                     return 0;*/
          let myReq;
          myReq = req.body;
          Auth.Merchant(req.headers.token).then(myMerchant=>{
