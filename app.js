@@ -9,7 +9,7 @@ var bcrypt = require('bcrypt-nodejs');
 var uniqid = require('uniqid');
 var cors = require('cors');
 
-const blockedIPs = ['174.138.183.72'];
+// const blockedIPs = ['174.138.183.72'];
 
  app.use(cors());
  
@@ -35,18 +35,18 @@ var ApiRoute = require('./routes/api');
 var WebRoute = require('./routes/web');
 
 
+// app.use((req, res, next) => {
+//   const clientIP = req.headers['x-forwarded-for'];
+//   console(clientIP,' *************** rejected ip address **************');
 
+//   if (blockedIPs.includes(clientIP)) {
+//     console.log(`Blocked request from IP: ${clientIP}`);
+//     return res.status(403).send('Access denied.');
+//   }
 
-app.use((req, res, next) => {
-  const clientIP = req.ip || req.connection.remoteAddress;
+//   next(); // Continue processing for other IPs
+// });
 
-  if (blockedIPs.includes(clientIP)) {
-    console.log(`Blocked request from IP: ${clientIP}`);
-    return res.status(403).send('Access denied.');
-  }
-
-  next(); // Continue processing for other IPs
-});
 
 app.use(logger('dev'));
 
