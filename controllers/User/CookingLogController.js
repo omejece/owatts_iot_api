@@ -15,7 +15,7 @@ module.exports = {
          
          CookingLog.findAll({
          	where:{
-         		start_date: req.query.date_taken
+            date_taken: req.query.date_taken
          	}
          }).then(cookingLogs=>{
          	res.setHeader('Content-type','application/json');

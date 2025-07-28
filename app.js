@@ -19,8 +19,8 @@ var cors = require('cors');
 
 var Auth = require('./middleware/AuthMiddleWare');
 var options = {
-  key: fs.readFileSync('../../ssl/keys/a2eae_9dd69_fc6d2a9a420711f9075ace3f87276591.key','utf8'),
-  cert: fs.readFileSync('../../ssl/certs/_wildcard__owattspay_net_a2eae_9dd69_1749764944_d521aeb7c3d24626825a92312eb7771c.crt','utf8')
+  key: fs.readFileSync('../../ssl/keys/efe49_654c5_54ff2112abaae234b312eb28279704b2.key','utf8'),
+  cert: fs.readFileSync('../../ssl/certs/www_iot2_owattspay_net_efe49_654c5_1760312678_26c7e37eea39f872a1668dd1315f4e4d.crt','utf8')
 };
 
 var https = require('https').createServer(options,app);
