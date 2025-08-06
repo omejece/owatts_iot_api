@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const Device = require('../../models').device;
 const Block = require('../../models').block;
 const ConnectedMeter = require('../../models').connectedmeter;
-const CookingLog = require('../../models').cookingLog;
+const CookingLog = require('../../models').CookingLog;
 const Op = Sequelize.Op;
 
 
