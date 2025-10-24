@@ -71,6 +71,7 @@ router.put('/device/disable',DeviceController.disableDevice);
 router.put('/device/enable',DeviceController.enableDevice);
 /* device */
 
+
 /*refill gas*/
   router.post('/refill_gas',DeviceController.refillGas);
 /*gas refil*/
@@ -119,10 +120,6 @@ router.get('/get_cooking_logs',CookingLogController.getCookingLogs);
   
   router.put('/ac_charge_enable',DeviceController.acChargeControl);
   router.put('/power_inverter',DeviceController.powerInverter);
-
-  
-
-
 /*lux inverter controls*/
 
 

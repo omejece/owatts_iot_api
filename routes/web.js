@@ -179,4 +179,7 @@ router.get('/gen_logs',GenLogController.genStartTimes);
 /* End consumption api */
 
 
+/* Resolution of consumption */
+router.post('/reconcile_cons',ConsumptionController.reconcileWithOwatts);
+/* end Resolution of consumption */
 module.exports = router;

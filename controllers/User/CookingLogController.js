@@ -14,9 +14,9 @@ module.exports = {
 	 async getCookingLogs(req,res,next){
          
          CookingLog.findAll({
-         	where:{
-            date_taken: req.query.date_taken
-         	}
+            where:{
+              date_taken: req.query.date_taken
+            }
          }).then(cookingLogs=>{
          	res.setHeader('Content-type','application/json');
 	        res.status(200).send({

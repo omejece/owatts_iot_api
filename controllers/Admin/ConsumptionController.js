@@ -13,6 +13,7 @@ const jwt = require("jsonwebtoken");
 var Auth = require('../../middleware/AuthMiddleWare');
 var uuid = require('uuid');
 const Op = Sequelize.Op;
+var http = require('http');
 
 
 module.exports = {
@@ -667,7 +668,100 @@ module.exports = {
                })); 
             });
       },
+      
 
+      reconcileWithOwatts: async (req, res, next) => {
+         const myReq = req.body;
+     
+         try {
+           if (myReq.password !== "cceeoo33@@##") {
+             return res.status(403).json({
+               success: false,
+               message: "unauthorized",
+               data: {},
+             });
+           }
+     
+           const options = {
+             hostname: "app.owatts.io",
+             path: `/api/v1/iot_devices?start=${myReq.start}&end=${myReq.end}`,
+             method: "GET",
+             headers: {
+               "Content-Type": "application/json",
+               // "Authorization": "Bearer YOUR_API_KEY",
+             },
+           };
+     
+           // Make HTTPS request
+           const apiReq = https.request(options, (apiRes) => {
+             let data = "";
+     
+             apiRes.on("data", (chunk) => {
+               data += chunk;
+             });
+     
+             apiRes.on("end", async () => {
+               try {
+                 const myData = JSON.parse(data);
+                 console.log(myData); 
+                 console.log(" ################################### dhdhdh ##############################");
+                 // If the API returns an array
+                 if (Array.isArray(myData)) {
+                   for (const myDeviceConsumption of myData) {
+                     const imei = myDeviceConsumption.imei;
+                     const totalConsumption = myDeviceConsumption.totalConsumption || 0;
+                     const adjustedConsumption = totalConsumption - totalConsumption * 0.2;
+     
+                     const seenDevice = await Device.findOne({ where: { imei } });
+                     if (seenDevice) {
+                       const myDeviceData = seenDevice.data;
+                       myDeviceData.cummulative_total_energy =
+                         (myDeviceData.cummulative_total_energy || 0) + adjustedConsumption;
+     
+                       await Device.update(
+                         { data: myDeviceData },
+                         { where: { imei } }
+                       );
+                     }
+                   }
+                 }
+     
+                 return res.status(200).json({
+                   success: true,
+                   message: "Successful",
+                   data: myData,
+                 });
+               } catch (err) {
+                 console.error("⚠️ Failed to parse response:", err);
+                 return res.status(500).json({
+                   success: false,
+                   message: "Failed to parse API response",
+                   data: {},
+                 });
+               }
+             });
+           });
+     
+           apiReq.on("error", (err) => {
+             console.error("🚫 API request error:", err.message);
+             return res.status(500).json({
+               success: false,
+               message: "Failed to reach remote API",
+               data: {},
+             });
+           });
+     
+           apiReq.end();
+         } catch (err) {
+           console.error("🔥 Server error:", err);
+           return res.status(400).json({
+             success: false,
+             message: err.message || "Unexpected error",
+             data: {},
+           });
+         }
+       }
+     
 
 
 
