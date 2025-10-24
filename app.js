@@ -1,38 +1,67 @@
-var createError = require('http-errors');
-var express = require('express');
-var app = express();
+// const createError = require('http-errors');
 
-var path = require('path');
-var fs = require('fs');
-var net = require('net');
-var bcrypt = require('bcrypt-nodejs');
-var uniqid = require('uniqid');
-var cors = require('cors');
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+const net = require('net');
+const bcrypt = require('bcrypt-nodejs');
+const uniqid = require('uniqid');
+const cors = require('cors');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 
 // const blockedIPs = ['174.138.183.72'];
 
- app.use(cors());
- 
+
+const Auth = require('./middleware/AuthMiddleWare');
+const ApiRoute = require('./routes/api');
+const WebRoute = require('./routes/web');
+
+
+const app = express();
+
+app.use(cors());
+
+app.use(logger('dev'));
+
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', function(req,res){
+    res.setHeader('Content-type','application/json');
+    res.send(JSON.stringify({status:20,message:"IoT meter api"})); 
+});
+
+app.use('/api/v2/admin', WebRoute);
+app.use('/api/v2', Auth.check, ApiRoute);
+
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+app.listen(process.env.PORT || 3000, function(){
+   console.log(`listening at port ${process.env.PORT || 3000}`);
+});
 
 
 
+// const options = {
+//   key: fs.readFileSync('../../ssl/keys/efe49_654c5_`54ff2112abaae234b312eb28279704b2.key','utf8'),
+//   cert: fs.readFileSync('../../ssl/certs/www_iot2_o`wattspay_net_efe49_654c5_1760312678_26c7e37eea39f872a1668dd1315f4e4d.crt','utf8')
+// };
 
-var Auth = require('./middleware/AuthMiddleWare');
-var options = {
-  key: fs.readFileSync('../../ssl/keys/efe49_654c5_54ff2112abaae234b312eb28279704b2.key','utf8'),
-  cert: fs.readFileSync('../../ssl/certs/www_iot2_owattspay_net_efe49_654c5_1760312678_26c7e37eea39f872a1668dd1315f4e4d.crt','utf8')
-};
+// const https = require('https').createServer(options,app);
 
-var https = require('https').createServer(options,app);
+// const http = require('http').createServer(app);
 
-var http = require('http').createServer(app);
-
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-
-var ApiRoute = require('./routes/api');
-var WebRoute = require('./routes/web');
 
 
 // app.use((req, res, next) => {
@@ -48,14 +77,6 @@ var WebRoute = require('./routes/web');
 // });
 
 
-app.use(logger('dev'));
-
- app.use(express.json());
-
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 
 
@@ -68,26 +89,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.get('/',function(req,res){
-    res.setHeader('Content-type','application/json');
-    res.send(JSON.stringify({status:20,message:"IoT meter api"})); 
-});
-
-
-
-
-app.use('/api/v2/admin',WebRoute);
-app.use('/api/v2',Auth.check,ApiRoute);
-
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
 
 
@@ -95,9 +96,9 @@ app.use(function(err, req, res, next) {
 
 
 
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 
 
@@ -107,26 +108,26 @@ app.use(function(req, res, next) {
 
 
 
-https.listen(process.env.HTTPS_PORT, function(){
-    console.log(`listening at port ${process.env.HTTPS_PORT} https`);
-});
+// https.listen(process.env.HTTPS_PORT, function(){
+//     console.log(`listening at port ${process.env.HTTPS_PORT} https`);
+// });
 
-https.on('error',function(error){
-   console.log(error);
-});
-
-
-
-http.listen(process.env.HTTP_PORT, function(){
-   console.log(`listening at port ${process.env.HTTP_PORT} http`);
-});
+// https.on('error',function(error){
+//    console.log(error);
+// });
 
 
 
+// http.listen(process.env.HTTP_PORT, function(){
+//    console.log(`listening at port ${process.env.HTTP_PORT} http`);
+// });
 
-http.on('error',function(error){
-   console.log(error);
-});
+
+
+
+// http.on('error',function(error){
+//    console.log(error);
+// });
 
 
 

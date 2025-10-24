@@ -10,9 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      devicetype.hasMany(models.device,{foreignKey:'device_type'});
+      devicetype.hasMany(models.device, { foreignKey: 'device_type' });
     }
   };
+
   devicetype.init({
     name: DataTypes.STRING,
     description: DataTypes.STRING

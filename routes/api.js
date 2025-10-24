@@ -51,7 +51,7 @@ router.get('/block_consumption/all_consumption',ConsumptionController.allDailyBl
 /* consumption */
 
 
-/* Alrm */
+/* Alarm */
 router.put('/alarm/update',DeviceAlarmController.update);
 router.get('/alarm/activealarm',DeviceAlarmController.activeAlarm);
 router.get('/alarm/inactivealarm',DeviceAlarmController.inActiveAlarm);
