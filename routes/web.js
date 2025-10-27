@@ -181,5 +181,8 @@ router.get('/gen_logs',GenLogController.genStartTimes);
 
 /* Resolution of consumption */
 router.post('/reconcile_cons',ConsumptionController.reconcileWithOwatts);
+router.post('/remove_error_cons',ConsumptionController.removeErrorBulkCons);
+
+router.post('/get_sum_consumption_by_date',ConsumptionController.getRangeSumConsumption);
 /* end Resolution of consumption */
 module.exports = router;
