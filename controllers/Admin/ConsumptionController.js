@@ -902,7 +902,9 @@ module.exports = {
                [Op.lte]: myReq.toDate,
              },
            },
-           group: ['imei']
+           group: ['imei'],
+           order: [['imei', 'ASC']], // 👈 Order by IMEI number ascending
+           raw: true,
          };
        
          Consumption.findAll(options)
@@ -910,7 +912,7 @@ module.exports = {
              res.status(200).json({
                success: true,
                message: 'Successful',
-               data: myconsumptions,
+               data: JSON.parse(myconsumptions),
              });
            })
            .catch((err) => {
