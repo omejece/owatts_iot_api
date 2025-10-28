@@ -856,77 +856,78 @@ module.exports = {
        },
 
 
-       getRangeSumConsumption: (req,res,next)=>{
-         let myReq;
-         myReq = req.query;
-         
-         let options = {
-            attributes: [
-              'imei',
-      
-              // Individual sums
-              [
-                Sequelize.literal(
-                  'SUM(CAST(data->>\'grid_consumption\' AS DOUBLE PRECISION))'
-                ),
-                'grid_consumption'
-              ],
-              [
-                Sequelize.literal(
-                  'SUM(CAST(data->>\'gen_consumption\' AS DOUBLE PRECISION))'
-                ),
-                'gen_consumption'
-              ],
-              [
-                Sequelize.literal(
-                  'SUM(CAST(data->>\'battery_consumption\' AS DOUBLE PRECISION))'
-                ),
-                'battery_consumption'
-              ],
-              [
-                Sequelize.literal(
-                  'SUM(CAST(data->>\'solar_consumption\' AS DOUBLE PRECISION))'
-                ),
-                'solar_consumption'
-              ],
-              [
-                Sequelize.literal(
-                  'SUM(CAST(data->>\'total_consumption\' AS DOUBLE PRECISION))'
-                ),
-                'total_consumption'
-              ],
-            ],
-            where: {
-              day_taken: {
-                [Op.between]: [myReq.fromDate, myReq.toDate],
-              },
-            },
-            group: ['imei'],
-            raw: true,
-         }
-
-
-         
-
-         Consumption.findAll(options).then(myconsumptions=>{
-            res.setHeader('Content-type','application/json');
-            res.status(200).send(JSON.stringify({
-               success:true,
-               message:'Successfull',
-               data: myconsumptions
-            }));
-         }).catch(err=>{
-            console.log(err);
-            res.setHeader('Content-type','application/json');
-            res.status(400).send(JSON.stringify({
-               success:false,
-               message:err,
-               data:{}
-            })); 
-         });
-  }
-     
-
+       getRangeSumConsumption: (req, res, next) => {
+         const myReq = req.query;
+       
+         const options = {
+           attributes: [
+             'imei',
+       
+             // Individual sums using MySQL/MariaDB JSON syntax
+             [
+               Sequelize.literal(
+                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.grid_consumption")) AS DOUBLE))'
+               ),
+               'grid_consumption'
+             ],
+             [
+               Sequelize.literal(
+                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.gen_consumption")) AS DOUBLE))'
+               ),
+               'gen_consumption'
+             ],
+             [
+               Sequelize.literal(
+                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.battery_consumption")) AS DOUBLE))'
+               ),
+               'battery_consumption'
+             ],
+             [
+               Sequelize.literal(
+                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.solar_consumption")) AS DOUBLE))'
+               ),
+               'solar_consumption'
+             ],
+             [
+               Sequelize.literal(
+                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.total_consumption")) AS DOUBLE))'
+               ),
+               'total_consumption'
+             ],
+           ],
+           where: {
+             day_taken: {
+               [Op.between]: [myReq.fromDate, myReq.toDate],
+             },
+           },
+           group: ['imei'],
+           raw: true,
+         };
+       
+         Consumption.findAll(options)
+           .then((myconsumptions) => {
+             res.setHeader('Content-type', 'application/json');
+             res.status(200).send(
+               JSON.stringify({
+                 success: true,
+                 message: 'Successful',
+                 data: myconsumptions,
+               })
+             );
+           })
+           .catch((err) => {
+             console.log(err);
+             res.setHeader('Content-type', 'application/json');
+             res.status(400).send(
+               JSON.stringify({
+                 success: false,
+                 message: err,
+                 data: {},
+               })
+             );
+           });
+       }
+       
 
 
      
