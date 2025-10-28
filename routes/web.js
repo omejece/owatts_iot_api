@@ -176,6 +176,7 @@ router.get('/yearly_consumption',ConsumptionController.getYearlyConsumption);
 router.get('/range_consumption',ConsumptionController.getRangeConsumption);
 router.get('/bypass_suspect',ByPassController.getByPassed);
 router.get('/gen_logs',GenLogController.genStartTimes);
+router.get('/get_sum_consumption_by_date',ConsumptionController.getRangeSumConsumption);
 /* End consumption api */
 
 
@@ -183,6 +184,6 @@ router.get('/gen_logs',GenLogController.genStartTimes);
 router.post('/reconcile_cons',ConsumptionController.reconcileWithOwatts);
 router.post('/remove_error_cons',ConsumptionController.removeErrorBulkCons);
 
-router.post('/get_sum_consumption_by_date',ConsumptionController.getRangeSumConsumption);
+
 /* end Resolution of consumption */
 module.exports = router;
