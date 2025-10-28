@@ -912,7 +912,7 @@ module.exports = {
              res.status(200).json({
                success: true,
                message: 'Successful',
-               data: JSON.parse(myconsumptions),
+               data: myconsumptions,
              });
            })
            .catch((err) => {
