@@ -38,8 +38,8 @@ app.use('/api/v2/admin', WebRoute);
 app.use('/api/v2', Auth.check, ApiRoute);
 
 const options = {
-  key: fs.readFileSync('../../../ssl/keys/a22b7_a6de1_731f7aac372120b85100bea8726f7c8e.key', 'utf8'),
-  cert: fs.readFileSync('../../../ssl/certs/www_iot2_owattspay_net_a22b7_a6de1_1765583076_dc0a9c2459be5367451878e92e257819.crt', 'utf8')
+  key: fs.readFileSync('../../ssl/keys/a22b7_a6de1_731f7aac372120b85100bea8726f7c8e.key', 'utf8'),
+  cert: fs.readFileSync('../../ssl/certs/www_iot2_owattspay_net_a22b7_a6de1_1765583076_dc0a9c2459be5367451878e92e257819.crt', 'utf8')
 };
 
 const https = require('https').createServer(options, app);
