@@ -43,6 +43,8 @@ router.get('/consumption/read',ConsumptionController.read);
 router.get('/consumption/single_consumption',ConsumptionController.singleConsumption);
 router.get('/consumption/all_consumption',ConsumptionController.allDailyConsumption);
 
+
+
 router.get('/block_consumption/detail',ConsumptionController.blockDetail);
 router.get('/block_consumption/read',ConsumptionController.blockRead);
 router.get('/block_consumption/single_consumption',ConsumptionController.singleBlockConsumption);
