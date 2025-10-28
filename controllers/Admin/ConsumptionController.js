@@ -898,7 +898,8 @@ module.exports = {
            ],
            where: {
              date_taken: {
-               [Op.between]: [myReq.fromDate, myReq.toDate],
+               [Op.gte]: myReq.fromDate,
+               [Op.lte]: myReq.toDate,
              },
            },
            group: ['imei'],
