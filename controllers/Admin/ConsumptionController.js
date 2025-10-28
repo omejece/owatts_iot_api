@@ -855,6 +855,8 @@ module.exports = {
          }
        },
 
+       
+
 
        getRangeSumConsumption: (req, res, next) => {
          const myReq = req.query;
@@ -863,34 +865,33 @@ module.exports = {
            attributes: [
              'imei',
        
-             // Individual sums using MySQL/MariaDB JSON syntax
              [
                Sequelize.literal(
-                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.grid_consumption")) AS DOUBLE))'
+                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.grid_consumption")) AS DECIMAL(10,4)))'
                ),
                'grid_consumption'
              ],
              [
                Sequelize.literal(
-                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.gen_consumption")) AS DOUBLE))'
+                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.gen_consumption")) AS DECIMAL(10,4)))'
                ),
                'gen_consumption'
              ],
              [
                Sequelize.literal(
-                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.battery_consumption")) AS DOUBLE))'
+                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.battery_consumption")) AS DECIMAL(10,4)))'
                ),
                'battery_consumption'
              ],
              [
                Sequelize.literal(
-                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.solar_consumption")) AS DOUBLE))'
+                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.solar_consumption")) AS DECIMAL(10,4)))'
                ),
                'solar_consumption'
              ],
              [
                Sequelize.literal(
-                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.total_consumption")) AS DOUBLE))'
+                 'SUM(CAST(JSON_UNQUOTE(JSON_EXTRACT(data, "$.total_consumption")) AS DECIMAL(10,4)))'
                ),
                'total_consumption'
              ],
@@ -906,28 +907,21 @@ module.exports = {
        
          Consumption.findAll(options)
            .then((myconsumptions) => {
-             res.setHeader('Content-type', 'application/json');
-             res.status(200).send(
-               JSON.stringify({
-                 success: true,
-                 message: 'Successful',
-                 data: myconsumptions,
-               })
-             );
+             res.status(200).json({
+               success: true,
+               message: 'Successful',
+               data: myconsumptions,
+             });
            })
            .catch((err) => {
-             console.log(err);
-             res.setHeader('Content-type', 'application/json');
-             res.status(400).send(
-               JSON.stringify({
-                 success: false,
-                 message: err,
-                 data: {},
-               })
-             );
+             console.error(err);
+             res.status(400).json({
+               success: false,
+               message: err.message || err,
+               data: {},
+             });
            });
        }
-       
 
 
      
