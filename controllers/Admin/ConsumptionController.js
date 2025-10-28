@@ -912,6 +912,7 @@ module.exports = {
              res.status(200).json({
                success: true,
                message: 'Successful',
+               totalRecord: myconsumptions.length,
                data: myconsumptions,
              });
            })
