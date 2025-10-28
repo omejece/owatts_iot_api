@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt-nodejs');
 const uniqid = require('uniqid');
 const cors = require('cors');
 const logger = require('morgan');
+const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 
 // const blockedIPs = ['174.138.183.72'];
