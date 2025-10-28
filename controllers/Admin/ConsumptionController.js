@@ -855,7 +855,7 @@ module.exports = {
          }
        },
 
-       
+
 
 
        getRangeSumConsumption: (req, res, next) => {
@@ -897,7 +897,7 @@ module.exports = {
              ],
            ],
            where: {
-             day_taken: {
+             date_taken: {
                [Op.between]: [myReq.fromDate, myReq.toDate],
              },
            },
