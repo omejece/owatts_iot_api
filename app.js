@@ -38,8 +38,8 @@ app.use('/api/v2/admin', WebRoute);
 app.use('/api/v2', Auth.check, ApiRoute);
 
 const options = {
-  key: fs.readFileSync('../../ssl/keys/efe49_654c5_`54ff2112abaae234b312eb28279704b2.key', 'utf8'),
-  cert: fs.readFileSync('../../ssl/certs/www_iot2_o`wattspay_net_efe49_654c5_1760312678_26c7e37eea39f872a1668dd1315f4e4d.crt', 'utf8')
+  key: fs.readFileSync('../../../ssl/keys/efe49_654c5_`54ff2112abaae234b312eb28279704b2.key', 'utf8'),
+  cert: fs.readFileSync('../../../ssl/certs/www_iot2_o`wattspay_net_efe49_654c5_1760312678_26c7e37eea39f872a1668dd1315f4e4d.crt', 'utf8')
 };
 
 const https = require('https').createServer(options, app);
