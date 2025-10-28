@@ -902,8 +902,7 @@ module.exports = {
                [Op.lte]: myReq.toDate,
              },
            },
-           group: ['imei'],
-           raw: true,
+           group: ['imei']
          };
        
          Consumption.findAll(options)
