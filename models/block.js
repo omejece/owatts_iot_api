@@ -25,7 +25,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         get(value) {
            const rawValue = this.getDataValue('data');
-           return JSON.parse(rawValue);
+           try {
+             return rawValue ? JSON.parse(rawValue) : null;
+           } catch (e) {
+             return null;
+           }
         },
         set(value) {
           this.setDataValue('data',JSON.stringify(value));
