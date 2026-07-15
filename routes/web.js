@@ -120,6 +120,7 @@ router.get('/generator_runtime',Auth.authenticate,DeviceController.generatorRunt
 router.get('/generator_runtimes',Auth.authenticate,DeviceController.generatorRuntimes);
 router.get('/generator_log',Auth.authenticate,DeviceController.generatorLog);
 router.get('/generator_logs',Auth.authenticate,DeviceController.generatorLogs);
+
 /* my generator logs */
 
 
@@ -183,7 +184,15 @@ router.get('/get_sum_consumption_by_date',ConsumptionController.getRangeSumConsu
 /* Resolution of consumption */
 router.post('/reconcile_cons',ConsumptionController.reconcileWithOwatts);
 router.post('/remove_error_cons',ConsumptionController.removeErrorBulkCons);
-
-
 /* end Resolution of consumption */
+
+
+/*for dynamic k*/
+router.put('/set_dynamic_k',Auth.authenticate,DeviceController.setDynamicK);
+
+
+/*webhooks */
+
+router.post('/webhook/kike_ai',Auth.authenticate,DeviceController.saveKikeAiWebHookData);
+
 module.exports = router;

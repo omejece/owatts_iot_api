@@ -2613,5 +2613,99 @@ module.exports = {
      },
 
 
+     saveKikeAiWebHookData: async (req,res,next)=>{
+          try{
+               const result = await Device.findOne({
+                    where:{
+                        imei: req.body?.imei
+                    }
+                });
+
+                if(!result)
+                    throw "device not found"
+
+                var deviceData = {
+                    report: req.body.report,
+                    balance: req.body.balance,
+                    quantity: req.body.quantity,
+                    unit: req.body.unit,
+                    recharged_at: req.body.recharged_at,
+                }
+
+                var deviceData = {...result?.data,...deviceData};
+                await Device.update(
+                    {
+                        data: deviceData
+                    },
+                    {
+                        where:{
+                            imei: req.body?.imei
+                        }
+                    }
+                );
+
+                return res.status(200).send({
+                    success:true,
+                    message:"successfully saved",
+                    data:[]
+                });
+
+          }
+          catch(err){
+              console.log(err);
+              return res.status(400).send({
+                    success:false,
+                    message:err,
+                    data:[]
+              });
+          }
+     },
+
+
+    setDynamicK: async (req,res,next)=>{
+          try{
+               const result = await Device.findOne({
+                    where:{
+                        imei: req.body?.imei
+                    }
+                });
+
+                if(!result)
+                    throw "device not found"
+
+                var deviceData = {
+                    dynamicK: req.body.dynamicK,
+                }
+
+                var deviceData = {...result?.data,...deviceData};
+                await Device.update(
+                    {
+                        data: deviceData
+                    },
+                    {
+                        where:{
+                            imei: req.body?.imei
+                        }
+                    }
+                );
+
+                return res.status(200).send({
+                    success:true,
+                    message:"successfully saved",
+                    data:[]
+                });
+
+          }
+          catch(err){
+              console.log(err);
+              return res.status(400).send({
+                    success:false,
+                    message:err,
+                    data:[]
+              });
+          }
+     }
+
+
 };
 
