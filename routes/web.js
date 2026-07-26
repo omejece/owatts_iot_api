@@ -195,4 +195,10 @@ router.put('/set_dynamic_k',Auth.authenticate,DeviceController.setDynamicK);
 
 router.post('/webhook/kike_ai',Auth.authenticate,DeviceController.saveKikeAiWebHookData);
 
+
+/*Device log data */
+
+router.post('/devicelog/:imei/:dataId',Auth.authenticate,DeviceController.getDeviceDataLogsByDataId);
+router.post('/devicelog/:imei',Auth.authenticate,DeviceController.getDeviceDataLogs);
+
 module.exports = router;
