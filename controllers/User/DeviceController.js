@@ -11,6 +11,7 @@ const Admin = require('../../models').admin;
 const BlockConsumption = require('../../models').blockconsumption;
 const GenLog = require('../../models').genlog;
 const Auth = require('../../middleware/AuthMiddleWare');
+const Model = require('../../models');
 const uuid = require('uuid');
 const Op = Sequelize.Op;
 
@@ -2704,7 +2705,55 @@ module.exports = {
                     data:[]
               });
           }
-     }
+     },
+
+
+
+    getDeviceDataLogsByDataId: async (req,res)=>{
+        try{
+            const result = await Model.DeviceLog.findAll({where:{
+                imei: req.params?.imei,
+                dataId: req.params?.dataId
+            }});
+
+            return res.status(200).send({
+                success:true,
+                message:"data read",
+                data:result
+            });
+        }
+        catch(err){
+            console.log(err);
+            return res.status(400).send({
+                success:false,
+                message:err,
+                data:[]
+            });           
+        }
+     },
+
+
+    getDeviceDataLogs: async (req,res)=>{
+        try{
+           const result = await Model.DeviceLog.findAll({where:{
+                imei: req.params?.imei
+            }});
+
+            return res.status(200).send({
+                success:true,
+                message:"data read",
+                data:result
+            });
+        }
+        catch(err){
+            console.log(err);
+            return res.status(400).send({
+                success:false,
+                message:err,
+                data:[]
+            });           
+        }
+     },
 
 
 };

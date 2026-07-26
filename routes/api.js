@@ -154,10 +154,19 @@ router.put('/onn_all_splitter_point',DeviceController.onnAllSplitterTerminal);
 
 
 
+/*for dynamic k*/
+router.put('/set_dynamic_k',DeviceController.setDynamicK);
 
 
+/*webhooks */
+
+router.post('/webhook/kike_ai',DeviceController.saveKikeAiWebHookData);
 
 
+/*Device log data */
+
+router.post('/devicelog/:imei/:dataId',DeviceController.getDeviceDataLogsByDataId);
+router.post('/devicelog/:imei',DeviceController.getDeviceDataLogs);
 
 
 

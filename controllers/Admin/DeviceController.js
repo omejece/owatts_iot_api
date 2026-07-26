@@ -6,7 +6,7 @@ var Device = require('../../models').device;
 var DeviceAlarm = require('../../models').devicealarm;
 var DeviceList = require('../../models').devicelist;
 var DeviceSetting = require('../../models').devicesetting;
-
+const Model = require('../../models');
 var DeviceType = require('../../models').devicetype;
 
 var Merchant = require('../../models').merchant;
@@ -2525,7 +2525,7 @@ module.exports = {
      },
 
 
-          saveKikeAiWebHookData: async (req,res,next)=>{
+     saveKikeAiWebHookData: async (req,res,next)=>{
           try{
                const result = await Device.findOne({
                     where:{
@@ -2616,7 +2616,54 @@ module.exports = {
                     data:[]
               });
           }
-     }
+     },
+
+
+    getDeviceDataLogsByDataId: async (req,res)=>{
+        try{
+            const result = await Model.DeviceLog.findAll({where:{
+                imei: req.params?.imei,
+                dataId: req.params?.dataId
+            }});
+
+            return res.status(200).send({
+                success:true,
+                message:"data read",
+                data:result
+            });
+        }
+        catch(err){
+            console.log(err);
+            return res.status(400).send({
+                success:false,
+                message:err,
+                data:[]
+            });           
+        }
+    },
+
+
+    getDeviceDataLogs: async (req,res)=>{
+        try{
+        const result = await Model.DeviceLog.findAll({where:{
+                imei: req.params?.imei
+            }});
+
+            return res.status(200).send({
+                success:true,
+                message:"data read",
+                data:result
+            });
+        }
+        catch(err){
+            console.log(err);
+            return res.status(400).send({
+                success:false,
+                message:err,
+                data:[]
+            });           
+        }
+    },
 
 
 
