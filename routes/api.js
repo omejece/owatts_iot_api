@@ -106,7 +106,7 @@ router.get('/generator_logs',DeviceController.generatorLogs);
 
 /* cooking logs */
 router.get('/get_cooking_logs',CookingLogController.getCookingLogs);
-
+router.get('/get_cooking_logs_range',CookingLogController.getCookingLogsRange);
 /* end cooking logs  */
 
 

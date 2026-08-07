@@ -34,6 +34,33 @@ module.exports = {
            });
          });
 
+	 },
+
+  async getCookingLogsRange(req,res,next){
+         
+         CookingLog.findAll({
+            where:{
+              date_taken: {
+                  [Op.between]:[req.query.startDate,req.query.endDate]
+              }
+            }
+         }).then(cookingLogs=>{
+         	res.setHeader('Content-type','application/json');
+	        res.status(200).send({
+	            success:true,
+	            message:'Successful',
+	            data:cookingLogs
+	        });
+         }).catch(err=>{
+           console.log(err);
+           res.setHeader('Content-type','application/json');
+           res.status(400).send({
+               success:false,
+               message:err,
+               data:[]
+           });
+         });
+
 	 }
 
 }
