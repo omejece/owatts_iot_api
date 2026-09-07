@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     session_id: DataTypes.STRING,
     block_id: DataTypes.INTEGER,
     merchant_id: DataTypes.INTEGER,
-    startTme: DataTypes.DATE,
+    startTime: DataTypes.DATE,
     totalConsumption: DataTypes.DOUBLE(6),
     status: DataTypes.INTEGER,
     endTime: DataTypes.DATE,
