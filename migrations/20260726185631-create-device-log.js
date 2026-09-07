@@ -12,7 +12,7 @@ module.exports = {
       imei: {
         type: Sequelize.STRING
       },
-      dataId: {
+      session_id: {
         type: Sequelize.STRING
       },
       deviceType: {

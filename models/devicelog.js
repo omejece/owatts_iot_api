@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   DeviceLog.init({
     imei: DataTypes.STRING,
-    dataId: DataTypes.STRING,
+    session_id: DataTypes.STRING,
     deviceType: DataTypes.INTEGER,
     data: DataTypes.TEXT
   }, {

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   CookingLog.init({
     imei: DataTypes.STRING,
-    dataId: DataTypes.STRING,
+    session_id: DataTypes.STRING,
     block_id: DataTypes.INTEGER,
     merchant_id: DataTypes.INTEGER,
     startTme: DataTypes.DATE,

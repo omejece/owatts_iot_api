@@ -40,6 +40,7 @@ module.exports = {
          
          CookingLog.findAll({
             where:{
+              imei: req.query.imei,
               date_taken: {
                   [Op.between]:[req.query.startDate,req.query.endDate]
               }
